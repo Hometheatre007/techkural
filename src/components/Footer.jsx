@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="social-links">
               <a href="#" className="social-icon"><Instagram /></a>
               <a href="#" className="social-icon"><Linkedin /></a>
-              <a href="#" className="social-icon"><Github /></a>
+              <a href="https://github.com/pugazhexploit" target="_blank" rel="noreferrer" className="social-icon"><Github /></a>
             </div>
           </div>
           

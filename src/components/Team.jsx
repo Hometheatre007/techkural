@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Twitter } from 'lucide-react';
+import { Linkedin, Twitter, Instagram } from 'lucide-react';
 import './Team.css';
 
 import founderImg from '../../team/founder.jpg';
@@ -58,6 +58,7 @@ const Team = () => {
             <h3>{founder.name}</h3>
             <p className="founder-bio">{founder.bio}</p>
             <div className="social-links team-socials">
+              <a href="https://www.instagram.com/official___pugazh_007/" target="_blank" rel="noreferrer" className="social-icon"><Instagram size={18} /></a>
               <a href="#" className="social-icon"><Linkedin size={18} /></a>
               <a href="#" className="social-icon"><Twitter size={18} /></a>
             </div>
