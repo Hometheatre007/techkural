@@ -1,0 +1,104 @@
+.about-section {
+  background-color: var(--color-bg-base);
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.tamil-quote-card {
+  background-color: var(--color-bg-card);
+  padding: 3rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.tamil-quote-card::before {
+  content: "❝";
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 8rem;
+  color: var(--color-border);
+  font-family: serif;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.kural-number {
+  font-size: 0.9rem;
+  color: var(--color-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+}
+
+.tamil-text {
+  font-family: var(--font-tamil);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.kural-translation {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

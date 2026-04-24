@@ -1,0 +1,98 @@
+.process-section {
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 4rem;
+}
+
+.process-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.step-number {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-bg-base);
+  border: 2px solid var(--color-accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-accent-gold);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.process-step:hover .step-number {
+  background-color: var(--color-accent-gold);
+  color: var(--color-bg-base);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(232, 184, 75, 0.4);
+}
+
+.step-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.step-connector {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.process-step:hover .step-connector {
+  background-color: var(--color-accent-gold);
+}
+
+@media (max-width: 992px) {
+  .process-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  
+  .process-step {
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    padding: 0;
+  }
+  
+  .step-number {
+    margin: 0 2rem 0 0;
+    flex-shrink: 0;
+  }
+  
+  .step-connector {
+    top: 100%;
+    left: 40px;
+    width: 2px;
+    height: 100%;
+    transform: translateY(-20px);
+  }
+}

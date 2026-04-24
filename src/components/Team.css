@@ -1,0 +1,146 @@
+.team-section {
+  background-color: var(--color-bg-base);
+}
+
+.founder-card {
+  display: flex;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent-gold);
+}
+
+.founder-image-wrapper {
+  flex: 0 0 40%;
+  position: relative;
+  min-height: 300px;
+}
+
+.founder-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-info {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.role-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.4rem 1rem;
+  background-color: rgba(232, 184, 75, 0.1);
+  color: var(--color-accent-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.founder-info h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.founder-bio {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.team-socials .social-icon {
+  width: 36px;
+  height: 36px;
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.team-member-card {
+  background-color: var(--color-bg-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-gold);
+}
+
+.member-image-wrapper {
+  height: 250px;
+  overflow: hidden;
+}
+
+.member-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: grayscale(100%);
+}
+
+.team-member-card:hover .member-image-wrapper img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.member-info {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.member-info h4 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 992px) {
+  .founder-card {
+    flex-direction: column;
+  }
+  
+  .founder-image-wrapper {
+    min-height: 400px;
+  }
+  
+  .founder-info {
+    padding: 2.5rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}

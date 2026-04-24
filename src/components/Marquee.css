@@ -1,0 +1,39 @@
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg-surface);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  padding: 0 2rem;
+  transition: color 0.3s ease;
+}
+
+.marquee-item:hover {
+  color: var(--color-accent-gold);
+}
+
+.marquee-dot {
+  color: var(--color-accent-gold);
+  margin-right: 2rem;
+  font-size: 1.5rem;
+}

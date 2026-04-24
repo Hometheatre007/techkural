@@ -1,0 +1,94 @@
+.pricing-section {
+  background-color: var(--color-bg-surface);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.pricing-card {
+  background-color: var(--color-bg-card);
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.pricing-card.highlighted {
+  border-color: var(--color-accent-gold);
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  background-color: var(--color-bg-base);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-accent-gold);
+  color: var(--color-bg-base);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tier-name {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.tier-price {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-accent-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tier-features {
+  list-style: none;
+  margin-bottom: 2.5rem;
+}
+
+.tier-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.check-icon {
+  color: var(--color-accent-gold);
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+}
+
+.pricing-btn {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+  
+  .pricing-card.highlighted {
+    transform: scale(1);
+  }
+}
