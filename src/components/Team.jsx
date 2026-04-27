@@ -3,8 +3,6 @@ import { Linkedin, Twitter, Instagram } from 'lucide-react';
 import './Team.css';
 
 import founderImg from '../../team/founder.jpg';
-import dev1Img from '../../team/dev1.jpg';
-import dev2Img from '../../team/devvv.jpeg';
 
 const Team = () => {
   const teamMembers = [
@@ -14,29 +12,10 @@ const Team = () => {
       image: founderImg,
       isFounder: true,
       bio: "Visionary leader driving the mission to blend modern technology with timeless wisdom at TechKural."
-    },
-    {
-      name: "Lead Developer",
-      role: "Full-Stack Engineer",
-      image: dev1Img,
-      isFounder: false
-    },
-    {
-      name: "Creative Director",
-      role: "UI/UX Design",
-      image: dev2Img,
-      isFounder: false
-    },
-    {
-      name: "Backend Specialist",
-      role: "Systems Architecture",
-      image: founderImg,
-      isFounder: false
     }
   ];
 
   const founder = teamMembers.find(m => m.isFounder);
-  const developers = teamMembers.filter(m => !m.isFounder);
 
   return (
     <section id="team" className="section-padding team-section">
@@ -65,20 +44,7 @@ const Team = () => {
           </div>
         </div>
 
-        {/* Team Grid */}
-        <div className="team-grid">
-          {developers.map((member, index) => (
-            <div key={index} className="team-member-card">
-              <div className="member-image-wrapper">
-                <img src={member.image} alt={member.name} />
-              </div>
-              <div className="member-info">
-                <h4>{member.name}</h4>
-                <p className="text-secondary">{member.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+
       </div>
     </section>
   );

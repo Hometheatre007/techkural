@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
+  const [result, setResult] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+
+    // Enter your Web3Forms Access Key here
+    formData.append("access_key", "b90f0969-3271-4ffa-b7ea-ce505fd41a51");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Message Sent Successfully!");
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
+    setIsSubmitting(false);
+  };
+
   return (
     <section id="contact" className="section-padding contact-section">
       <div className="container">
@@ -23,7 +52,7 @@ const Contact = () => {
                 <div className="info-icon"><Mail /></div>
                 <div>
                   <h4>Email Us</h4>
-                  <p>pugazhenthij283@gmail.com</p>
+                  <p>techkural.co@gmail.com</p>
                 </div>
               </div>
               <div className="info-item">
@@ -37,24 +66,24 @@ const Contact = () => {
           </div>
 
           <div className="contact-form-container">
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" onSubmit={onSubmit}>
               <div className="form-group">
                 <label>Name</label>
-                <input type="text" placeholder="John Doe" required />
+                <input type="text" name="name" placeholder="John Doe" required />
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Email</label>
-                  <input type="email" placeholder="john@example.com" required />
+                  <input type="email" name="email" placeholder="john@example.com" required />
                 </div>
                 <div className="form-group">
                   <label>Phone</label>
-                  <input type="tel" placeholder="+91 000000000" />
+                  <input type="tel" name="phone" placeholder="+91 000000000" />
                 </div>
               </div>
               <div className="form-group">
                 <label>Service interested in</label>
-                <select className="form-select">
+                <select name="service" className="form-select">
                   <option>Website Design</option>
                   <option>E-Commerce</option>
                   <option>Web Application</option>
@@ -63,9 +92,16 @@ const Contact = () => {
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <textarea rows="4" placeholder="Tell us about your project..."></textarea>
+                <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
               </div>
-              <button type="submit" className="btn btn-primary submit-btn">Send Message</button>
+              <button type="submit" disabled={isSubmitting} className="btn btn-primary submit-btn">
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+              {result && (
+                <p className={`form-status ${result.includes('Success') ? 'status-success' : 'status-error'}`}>
+                  {result}
+                </p>
+              )}
             </form>
           </div>
         </div>

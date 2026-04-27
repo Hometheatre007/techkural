@@ -94,6 +94,31 @@ input:focus, select:focus, textarea:focus {
   padding: 1rem;
 }
 
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.status-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
 @media (max-width: 992px) {
   .contact-grid {
     grid-template-columns: 1fr;
