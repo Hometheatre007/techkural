@@ -1,6 +1,7 @@
 import React from 'react';
 import { Instagram, Linkedin, Github } from 'lucide-react';
 import './Footer.css';
+import logoImg from '../../team/logo.jpeg';
 
 const Footer = () => {
   return (
@@ -8,7 +9,12 @@ const Footer = () => {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#" className="logo">TechKural<span className="logo-dot">.</span></a>
+            <a href="#" className="logo">
+              <div className="logo-img-container">
+                <img src={logoImg} alt="TechKural Logo" className="logo-img" />
+              </div>
+              <span>TechKural</span><span className="logo-dot">.</span>
+            </a>
             <p className="footer-tagline">Code with Purpose. Build with Wisdom.</p>
             <div className="social-links">
               <a href="#" className="social-icon"><Instagram /></a>

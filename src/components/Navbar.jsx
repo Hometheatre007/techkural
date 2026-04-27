@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
+import logoImg from '../../team/logo.jpeg';
 
 const Navbar = ({ isLightMode, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -21,7 +22,10 @@ const Navbar = ({ isLightMode, toggleTheme }) => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <a href="#" className="logo">
-          TechKural<span className="logo-dot">.</span>
+          <div className="logo-img-container">
+            <img src={logoImg} alt="TechKural Logo" className="logo-img" />
+          </div>
+          <span>TechKural</span><span className="logo-dot">.</span>
         </a>
         
         <div className="nav-links">
