@@ -48,8 +48,10 @@
 .logo-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: scale(1.3); /* This zooms in on the image content */
+  object-fit: contain;
+  padding: 4px;
+  background-color: #ffffff;
+  transform: scale(1.4); /* Increased zoom for PNG */
   transition: transform 0.3s ease;
 }
 

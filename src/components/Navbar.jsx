@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
-import logoImg from '../../team/logo.jpeg';
+import logoImg from '../../team/logo.png';
 
 const Navbar = ({ isLightMode, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
