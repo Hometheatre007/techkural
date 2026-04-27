@@ -33,6 +33,7 @@ const Navbar = ({ isLightMode, toggleTheme }) => {
           <a href="#services">Services</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
         </div>
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           <ThemeToggle isLightMode={isLightMode} toggleTheme={toggleTheme} />
