@@ -3,28 +3,28 @@ import './Testimonials.css';
 
 const TESTIMONIALS = [
   {
-    name: 'Ravi Kumar',
+    name: 'Pugazhenthi J',
     role: 'CEO, UV Smart Lands',
     text: 'TechKural transformed our online presence completely. Our lead generation increased by 5x within the first two months. Their attention to detail and understanding of our market is exceptional.',
     rating: 5,
     color: '#00ff88',
   },
   {
-    name: 'Priya Shankar',
+    name: 'nithiya',
     role: 'Founder, Achidam',
     text: 'Working with TechKural was a game-changer for our wedding platform. They built a beautiful, high-converting website that our users love. Highly recommended!',
     rating: 5,
     color: '#00ffc8',
   },
   {
-    name: 'Arjun Patel',
+    name: 'keerthana',
     role: 'Marketing Head, ScaleupMax',
     text: 'The performance marketing campaigns they set up for us delivered consistent ROI. Their data-driven approach and transparent reporting made all the difference.',
     rating: 5,
     color: '#7b2fff',
   },
   {
-    name: 'Lakshmi Devi',
+    name: '',
     role: 'Director, Tripkadaii',
     text: 'From SEO to website development, TechKural handled everything professionally. Our organic traffic grew 300% in six months. True professionals who deliver results.',
     rating: 5,

@@ -3,7 +3,7 @@ import './ThemeToggle.css';
 
 const ThemeToggle = ({ isLightMode, toggleTheme }) => {
   return (
-    <button 
+    <button
       className={`theme-toggle ${isLightMode ? 'light' : 'dark'}`}
       onClick={toggleTheme}
       aria-label="Toggle theme"

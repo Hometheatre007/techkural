@@ -63,8 +63,8 @@ function About() {
             <span className="section-label">About Us</span>
             <h2 className="section-title">We Build More Than Just Pixels</h2>
             <p>
-              We are two freelancers with over a year of experience crafting digital experiences that drive real business results. 
-              Based in Chidambaram, Tamil Nadu, we've helped 25+ clients across industries — from real estate to e-commerce — 
+              We are two freelancers with over a year of experience crafting digital experiences that drive real business results.
+              Based in Chidambaram, Tamil Nadu, we've helped 25+ clients across industries — from real estate to e-commerce —
               achieve measurable growth through strategic web development, performance marketing, and cybersecurity services.
             </p>
             <p>
@@ -75,19 +75,19 @@ function About() {
           <div className="about__stats stagger-children">
             <div className="about__stat reveal">
               <span className="about__stat-number">
-                <AnimatedCounter target={50} prefix="₹" suffix="L+" />
+                <AnimatedCounter target={1} prefix="₹" suffix="L+" />
               </span>
               <span className="about__stat-label">Revenue Generated</span>
             </div>
             <div className="about__stat reveal">
               <span className="about__stat-number">
-                <AnimatedCounter target={30} suffix="+" />
+                <AnimatedCounter target={10} suffix="+" />
               </span>
               <span className="about__stat-label">Projects Completed</span>
             </div>
             <div className="about__stat reveal">
               <span className="about__stat-number">
-                <AnimatedCounter target={25} suffix="+" />
+                <AnimatedCounter target={10} suffix="+" />
               </span>
               <span className="about__stat-label">Happy Clients</span>
             </div>
