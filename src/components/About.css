@@ -1,104 +1,113 @@
-.about-section {
-  background-color: var(--color-bg-base);
+/* =============================================
+   ABOUT — White Theme
+   ============================================= */
+
+.about {
   position: relative;
+  overflow: hidden;
+  background: var(--bg-surface);
 }
 
-.about-grid {
+.about__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.15;
+  animation: particleFloat 5s ease-in-out infinite alternate;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(0, 0); opacity: 0.1; }
+  50% { opacity: 0.2; }
+  100% { transform: translate(20px, -30px); opacity: 0.05; }
+}
+
+.about__content {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 4rem;
   align-items: center;
 }
 
-.tamil-quote-card {
-  background-color: var(--color-bg-card);
-  padding: 3rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  position: relative;
-  overflow: hidden;
+.about__text p {
+  margin-top: 1rem;
+  font-size: 1.05rem;
 }
 
-.tamil-quote-card::before {
-  content: "❝";
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  font-size: 8rem;
-  color: var(--color-border);
-  font-family: serif;
-  line-height: 1;
-  opacity: 0.5;
+.about__text p + p {
+  margin-top: 0.75rem;
 }
 
-.kural-number {
-  font-size: 0.9rem;
-  color: var(--color-accent-gold);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-body);
+/* Stats */
+.about__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.tamil-text {
-  font-family: var(--font-tamil);
-  font-size: 1.8rem;
-  line-height: 1.6;
-  color: var(--color-text-primary);
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
+.about__stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  text-align: center;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  box-shadow: var(--shadow-sm);
 }
 
-.kural-translation {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  font-style: italic;
-  border-top: 1px solid var(--color-border);
-  padding-top: 1.5rem;
+.about__stat:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
-.section-title {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
-.about-description {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 3rem;
-  line-height: 1.8;
-}
-
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.stat-number {
-  font-family: var(--font-display);
+.about__stat-number {
+  font-family: var(--font-heading);
+  font-weight: 800;
   font-size: 2.5rem;
-  color: var(--color-accent-gold);
-  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
-.stat-label {
+.about__stat-label {
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
-@media (max-width: 992px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  .stats-container {
+  .about__content {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .about__stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .about__stat {
+    flex: 1;
+    min-width: 140px;
+    padding: 1.25rem;
+  }
+
+  .about__stat-number {
+    font-size: 1.8rem;
   }
 }

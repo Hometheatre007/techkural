@@ -15,7 +15,7 @@ const Contact = () => {
     // Enter your Web3Forms Access Key here
     formData.append("access_key", "b90f0969-3271-4ffa-b7ea-ce505fd41a51");
 
-    const response = await fetch("https://api.web3forms.com/submit", {
+    const response = await fetch("https://calendly.com/techkural/30min", {
       method: "POST",
       body: formData
     });

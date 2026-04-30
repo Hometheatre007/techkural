@@ -1,52 +1,126 @@
-import React from 'react';
-import { Instagram, Linkedin, Github } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import './Footer.css';
-import logoImg from '../../team/logo.png';
 
-const Footer = () => {
+const INDUSTRIES = ['Real Estate', 'Construction', 'Interior Design', 'E-Commerce', 'Education', 'Cybersecurity'];
+
+const NAV_LINKS = [
+  { label: 'Home', id: 'home' },
+  { label: 'Services', id: 'services' },
+  { label: 'Our Work', id: 'portfolio' },
+  { label: 'About', id: 'about' },
+  { label: 'Pricing', id: 'pricing' },
+  { label: 'FAQ', id: 'faq' },
+];
+
+const SOCIALS = [
+  { label: 'Instagram', url: 'https://instagram.com/techkural', icon: '📸' },
+  { label: 'LinkedIn', url: 'https://linkedin.com/company/techkural', icon: '💼' },
+  { label: 'WhatsApp', url: 'https://wa.me/919876543210', icon: '💬' },
+  { label: 'Email', url: 'mailto:techkural.co@gmail.com', icon: '✉️' },
+];
+
+function Footer() {
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 400);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       <div className="container">
-        <div className="footer-top">
-          <div className="footer-brand">
-            <a href="#" className="logo">
-              <div className="logo-img-container">
-                <img src={logoImg} alt="TechKural Logo" className="logo-img" />
-              </div>
-              <span>TechKural</span><span className="logo-dot">.</span>
+        {/* Headline */}
+        <div className="footer__headline reveal">
+          <h2 className="footer__headline-text">
+            Let's build something awesome
+          </h2>
+        </div>
+
+        <div className="footer__grid">
+          {/* Industries */}
+          <div className="footer__col reveal">
+            <h4 className="footer__col-title">Industries</h4>
+            <ul className="footer__list">
+              {INDUSTRIES.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Navigation */}
+          <div className="footer__col reveal">
+            <h4 className="footer__col-title">Navigation</h4>
+            <ul className="footer__list footer__list--links">
+              {NAV_LINKS.map((link, i) => (
+                <li key={i}>
+                  <a href={`#${link.id}`} onClick={(e) => { e.preventDefault(); scrollTo(link.id); }}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Socials */}
+          <div className="footer__col reveal">
+            <h4 className="footer__col-title">Connect</h4>
+            <ul className="footer__list footer__list--socials">
+              {SOCIALS.map((social, i) => (
+                <li key={i}>
+                  <a href={social.url} target="_blank" rel="noopener noreferrer">
+                    <span className="footer__social-icon">{social.icon}</span>
+                    {social.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="footer__col reveal">
+            <h4 className="footer__col-title">Get In Touch</h4>
+            <p className="footer__contact-email">techkural.co@gmail.com</p>
+            <a
+              href="https://calendly.com/techkural/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary footer__cta"
+            >
+              Book a Meeting
             </a>
-            <p className="footer-tagline">Code with Purpose. Build with Wisdom.</p>
-            <div className="social-links">
-              <a href="#" className="social-icon"><Instagram /></a>
-              <a href="#" className="social-icon"><Linkedin /></a>
-              <a href="https://github.com/pugazhexploit" target="_blank" rel="noreferrer" className="social-icon"><Github /></a>
-            </div>
-          </div>
-          
-          <div className="footer-links-group">
-            <h4>Company</h4>
-            <a href="#about">About Us</a>
-            <a href="#portfolio">Our Work</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-          </div>
-          
-          <div className="footer-links-group">
-            <h4>Services</h4>
-            <a href="#services">Web Design</a>
-            <a href="#services">E-Commerce</a>
-            <a href="#services">Web Applications</a>
-            <a href="#services">SEO Optimization</a>
           </div>
         </div>
-        
-        <div className="footer-bottom">
-          <p>&copy; 2025 Developed by TechKural Team. All rights reserved.</p>
-          <p className="footer-motto">Whatever is thought of, will be achieved as thought of — Kural 666</p>
+
+        {/* Bottom bar */}
+        <div className="footer__bottom">
+          <p>© 2026 TechKural. All rights reserved.</p>
+          <div className="footer__logo">
+            Tech<span className="footer__logo-bold">Kural</span><span className="footer__logo-dot">.</span>
+          </div>
         </div>
       </div>
+
+      {/* Back to top */}
+      <button
+        className={`footer__back-top${showTop ? ' footer__back-top--visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -1,98 +1,142 @@
-.process-section {
-  background-color: var(--color-bg-surface);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
+/* =============================================
+   PROCESS — White Theme
+   ============================================= */
 
-.process-timeline {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  margin-top: 4rem;
-}
-
-.process-step {
-  flex: 1;
+.process__header {
   text-align: center;
+  margin-bottom: 4rem;
+}
+
+.process__timeline {
   position: relative;
-  padding: 0 1rem;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.step-number {
-  width: 80px;
-  height: 80px;
-  background-color: var(--color-bg-base);
-  border: 2px solid var(--color-accent-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem;
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--color-accent-gold);
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
-}
-
-.process-step:hover .step-number {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg-base);
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(232, 184, 75, 0.4);
-}
-
-.step-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.step-desc {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-
-.step-connector {
+/* Connecting line */
+.process__line {
   position: absolute;
-  top: 40px;
   left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.process__line-svg {
   width: 100%;
-  height: 2px;
-  background-color: var(--color-border);
+  height: 100%;
+}
+
+.process__line-draw {
+  stroke: var(--accent);
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 3s ease forwards;
+}
+
+/* Step */
+.process__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  position: relative;
   z-index: 1;
 }
 
-.process-step:hover .step-connector {
-  background-color: var(--color-accent-gold);
+.process__step--left {
+  flex-direction: row;
+  text-align: left;
 }
 
-@media (max-width: 992px) {
-  .process-timeline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3rem;
-  }
-  
-  .process-step {
-    display: flex;
+.process__step--right {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Step Number */
+.process__step-number {
+  position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process__number-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent-dim);
+  transition: border-color var(--transition);
+}
+
+.process__step:hover .process__number-ring {
+  border-color: var(--accent);
+  animation: rotate-ring 3s linear infinite;
+  border-style: dashed;
+}
+
+.process__number-text {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+  z-index: 1;
+}
+
+/* Step Card */
+.process__step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  flex: 1;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.process__step-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.process__step-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.process__step-card p {
+  font-size: 0.92rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .process__step--left,
+  .process__step--right {
+    flex-direction: row;
     text-align: left;
-    align-items: flex-start;
-    padding: 0;
   }
-  
-  .step-number {
-    margin: 0 2rem 0 0;
-    flex-shrink: 0;
+
+  .process__line {
+    left: 28px;
   }
-  
-  .step-connector {
-    top: 100%;
-    left: 40px;
-    width: 2px;
-    height: 100%;
-    transform: translateY(-20px);
+
+  .process__step-number {
+    width: 44px;
+    height: 44px;
+  }
+
+  .process__number-text {
+    font-size: 0.85rem;
+  }
+
+  .process__step-card {
+    padding: 1.25rem;
   }
 }

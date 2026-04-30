@@ -1,0 +1,138 @@
+/* =============================================
+   CYBERSECURITY SECTION — White Theme
+   ============================================= */
+
+.cybersecurity {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(0, 184, 169, 0.03) 50%, var(--bg-surface) 100%);
+}
+
+.cybersecurity__matrix {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.cybersecurity__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Shield */
+.cybersecurity__shield-wrap {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cybersecurity__shield {
+  width: 80px;
+  height: 96px;
+}
+
+.cybersecurity__shield-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 2s ease forwards;
+}
+
+.cybersecurity__shield-check {
+  opacity: 0;
+  animation: fadeUp 0.6s ease 1.5s forwards;
+}
+
+/* Header */
+.cybersecurity__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+/* Columns */
+.cybersecurity__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.cybersecurity__column-inner {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 184, 169, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  height: 100%;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  box-shadow: var(--shadow-sm);
+  clip-path: inset(0 0 0 0);
+  animation: clipReveal 0.8s ease forwards;
+}
+
+@keyframes clipReveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.cybersecurity__column-inner:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyber-teal);
+  box-shadow: 0 8px 30px rgba(0, 184, 169, 0.1);
+}
+
+.cybersecurity__column-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cybersecurity__column-inner h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--cyber-teal);
+}
+
+.cybersecurity__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cybersecurity__list li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.cybersecurity__list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--cyber-teal);
+  font-weight: 700;
+}
+
+/* CTA */
+.cybersecurity__cta-wrap {
+  text-align: center;
+}
+
+.cybersecurity__cta {
+  font-size: 1rem;
+  padding: 0.9rem 2.5rem;
+}
+
+.cybersecurity__cta:hover {
+  animation: glitch 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cybersecurity__columns {
+    grid-template-columns: 1fr;
+  }
+}
