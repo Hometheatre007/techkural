@@ -9,6 +9,7 @@ import Pricing from './components/Pricing';
 import CybersecuritySection from './components/CybersecuritySection';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
 
 function App() {
   const [cursorPos, setCursorPos] = useState({ x: -200, y: -200 });
@@ -106,6 +107,7 @@ function App() {
       </main>
 
       <Footer />
+      <Chatbot />
     </div>
   );
 }

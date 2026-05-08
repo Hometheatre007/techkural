@@ -51,10 +51,10 @@ function About() {
 
           <div className="about__description-unique reveal">
             <p>
-              We're a team of two creative minds dedicated to transforming complex challenges into elegant digital solutions. With over a year of hands-on experience, we bridge the gap between technical excellence and human-centric design.
+              We're a Strategist and a Storyteller — a duo that believes every great product starts with understanding people, not just pixels. With over a year of hands-on experience across diverse industries, we approach every project with deep empathy and a commitment to craft.
             </p>
             <p>
-              Whether it's building high-performance web applications or securing your digital assets, we don't just deliver projects—we build long-term partnerships rooted in trust and results.
+              We don't just build websites — we shape experiences. From solving complex business puzzles to creating brand stories that resonate, we're your creative partners who care about the "why" behind every decision and the "feel" behind every interaction.
             </p>
           </div>
         </div>
