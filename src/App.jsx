@@ -10,6 +10,7 @@ import CybersecuritySection from './components/CybersecuritySection';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const [cursorPos, setCursorPos] = useState({ x: -200, y: -200 });
@@ -108,6 +109,7 @@ function App() {
 
       <Footer />
       <Chatbot />
+      <SpeedInsights />
     </div>
   );
 }
