@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://techkural.com/sitemap.xml
+Sitemap: https://shateen.com/sitemap.xml

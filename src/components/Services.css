@@ -1,5 +1,5 @@
 /* =============================================
-   SERVICES — White Theme
+   SERVICES — Orange Theme
    ============================================= */
 
 .services__header {
@@ -259,20 +259,20 @@
   color: var(--text-dim);
 }
 
-/* Cyber Card */
+/* Cyber Card — uses orange accent instead of teal */
 .services__card--cyber {
   grid-column: 1 / -1;
 }
 
 .services__card-inner--cyber {
-  background: linear-gradient(135deg, rgba(0, 184, 169, 0.04) 0%, var(--bg-card) 50%, rgba(108, 60, 224, 0.04) 100%);
-  border-color: rgba(0, 184, 169, 0.2);
+  background: linear-gradient(135deg, rgba(245, 124, 0, 0.03) 0%, var(--bg-card) 50%, rgba(255, 152, 0, 0.03) 100%);
+  border-color: rgba(245, 124, 0, 0.15);
   position: relative;
 }
 
 .services__card-inner--cyber:hover {
-  border-color: var(--cyber-teal);
-  box-shadow: 0 8px 40px rgba(0, 184, 169, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 8px 40px rgba(245, 124, 0, 0.1);
 }
 
 /* Scanline */
@@ -282,7 +282,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyber-teal), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.5;
   animation: scanline 4s linear infinite;
   pointer-events: none;
@@ -295,8 +295,8 @@
   font-weight: 700;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-pill);
-  background: rgba(0, 184, 169, 0.12);
-  color: var(--cyber-teal);
+  background: var(--accent-dim);
+  color: var(--accent);
   letter-spacing: 1px;
   animation: glitch 3s ease-in-out infinite;
 }
@@ -304,7 +304,7 @@
 /* Terminal */
 .services__terminal {
   background: #0f172a;
-  border: 1px solid rgba(0, 184, 169, 0.15);
+  border: 1px solid rgba(245, 124, 0, 0.15);
   border-radius: var(--radius);
   overflow: hidden;
   margin-bottom: 1.5rem;
@@ -346,7 +346,7 @@
 }
 
 .services__terminal-line {
-  color: #22d3ee;
+  color: var(--orange-medium);
 }
 
 .services__terminal-line--critical {
@@ -355,7 +355,7 @@
 
 .services__terminal-cursor {
   animation: typewriter-cursor 0.8s step-end infinite;
-  color: #22d3ee;
+  color: var(--orange-medium);
 }
 
 /* Cyber sub-services list */
@@ -379,7 +379,7 @@
 }
 
 .services__cyber-check {
-  color: var(--cyber-teal);
+  color: var(--accent);
   font-weight: 700;
 }
 

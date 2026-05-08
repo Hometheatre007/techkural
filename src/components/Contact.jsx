@@ -15,7 +15,7 @@ const Contact = () => {
     // Enter your Web3Forms Access Key here
     formData.append("access_key", "b90f0969-3271-4ffa-b7ea-ce505fd41a51");
 
-    const response = await fetch("https://calendly.com/techkural/30min", {
+    const response = await fetch("https://calendly.com/shateen/30min", {
       method: "POST",
       body: formData
     });
@@ -52,7 +52,7 @@ const Contact = () => {
                 <div className="info-icon"><Mail /></div>
                 <div>
                   <h4>Email Us</h4>
-                  <p>techkural.co@gmail.com</p>
+                  <p>shateen.co@gmail.com</p>
                 </div>
               </div>
               <div className="info-item">

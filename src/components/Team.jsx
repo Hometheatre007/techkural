@@ -11,7 +11,7 @@ const Team = () => {
       role: "CEO & Founder",
       image: founderImg,
       isFounder: true,
-      bio: "Visionary leader driving the mission to blend modern technology with timeless wisdom at TechKural."
+      bio: "Visionary leader driving the mission to blend modern technology with timeless wisdom at Shateen."
     }
   ];
 

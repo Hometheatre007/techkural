@@ -1,102 +1,122 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, Zap, TrendingUp, Users } from 'lucide-react';
 import './Hero.css';
 
-const HEADLINE_WORDS = ['We', 'build', 'high', 'converting', 'websites', 'and', 'run', 'ads', 'that', 'generate', 'leads.'];
-
 function Hero() {
-  const [visibleWords, setVisibleWords] = useState(0);
-  const [showSub, setShowSub] = useState(false);
-  const sectionRef = useRef(null);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setVisibleWords((prev) => {
-        if (prev >= HEADLINE_WORDS.length) {
-          clearInterval(timer);
-          setTimeout(() => setShowSub(true), 300);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 90);
-    return () => clearInterval(timer);
+    const timer = setTimeout(() => setShowContent(true), 200);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="hero" id="home" ref={sectionRef}>
-      {/* Animated Mesh Gradient Background */}
-      <div className="hero__mesh" />
-      <div className="hero__grid-overlay" />
+    <section className="hero" id="home">
+      {/* Decorative elements */}
+      <div className="hero__orb hero__orb--1" />
+      <div className="hero__orb hero__orb--2" />
+      <div className="hero__grid-lines" />
 
       <div className="hero__content container">
-        {/* Badge */}
-        <div className="hero__badge reveal">
-          <span className="hero__badge-dot" />
-          <span>May '26 Slots Open — Only 5 Left</span>
-        </div>
+        {/* Left Column - Text */}
+        <div className="hero__text">
+          {/* Badge */}
+          <div className={`hero__badge${showContent ? ' hero__badge--visible' : ''}`}>
+            <span className="hero__badge-dot" />
+            <span>May '26 Slots Open — Only 5 Left</span>
+          </div>
 
-        {/* Headline */}
-        <h1 className="hero__headline">
-          {HEADLINE_WORDS.map((word, i) => (
-            <span
-              key={i}
-              className={`hero__word${i < visibleWords ? ' hero__word--visible' : ''}`}
-              style={{ transitionDelay: `${i * 50}ms` }}
+          {/* Headline */}
+          <h1 className={`hero__headline${showContent ? ' hero__headline--visible' : ''}`}>
+            We build{' '}
+            <span className="hero__highlight">high converting</span>
+            <br />
+            websites & run{' '}
+            <span className="hero__highlight">ads that</span>
+            <br />
+            generate leads
+          </h1>
+
+          {/* Subtext */}
+          <p className={`hero__subtext${showContent ? ' hero__subtext--visible' : ''}`}>
+            We help businesses grow <strong>3x–10x</strong> by building dynamic websites
+            and running <strong>Meta ads</strong> that generate consistent leads and sales.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className={`hero__buttons${showContent ? ' hero__buttons--visible' : ''}`}>
+            <a
+              href="https://calendly.com/shateen/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary hero__btn-primary"
             >
-              {word}
-            </span>
-          ))}
-        </h1>
-
-        {/* Subtext */}
-        <p className={`hero__subtext${showSub ? ' hero__subtext--visible' : ''}`}>
-          We help businesses grow 3x–10x with performance websites, Meta/Google ads, SEO, and cybersecurity services.
-        </p>
-
-        {/* Buttons */}
-        <div className={`hero__buttons${showSub ? ' hero__buttons--visible' : ''}`}>
-          <a href="https://calendly.com/techkural/30min" target="_blank" rel="noopener noreferrer" className="btn btn-primary hero__btn-primary">
-            Book a Meeting
-          </a>
-          <a href="#portfolio" className="btn btn-ghost hero__btn-ghost" onClick={(e) => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            View Our Work
-          </a>
+              Book a meeting with us
+              <span className="btn__arrow"><ArrowUpRight size={18} /></span>
+            </a>
+            <a href="#portfolio" className="btn btn-ghost hero__btn-ghost">
+              View our work
+            </a>
+          </div>
         </div>
 
-        {/* Avatar Stack */}
-        <div className={`hero__social-proof${showSub ? ' hero__social-proof--visible' : ''}`}>
-          <div className="hero__avatars">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <div key={n} className="hero__avatar" style={{ backgroundColor: `hsl(${n * 50 + 200}, 60%, 55%)` }}>
-                {String.fromCharCode(64 + n)}
+        {/* Right Column - Visual showcase */}
+        <div className={`hero__visual${showContent ? ' hero__visual--visible' : ''}`}>
+          <div className="hero__visual-container">
+            {/* Floating stat cards */}
+            <div className="hero__float-card hero__float-card--1">
+              <div className="hero__float-card-icon"><TrendingUp size={20} /></div>
+              <div className="hero__float-card-info">
+                <span className="hero__float-card-number">10x</span>
+                <span className="hero__float-card-label">Lead Growth</span>
               </div>
-            ))}
-          </div>
-          <span className="hero__clients-text">25+ Happy Clients</span>
-        </div>
+            </div>
 
-        {/* Stat Cards — Inline Row */}
-        <div className={`hero__stats${showSub ? ' hero__stats--visible' : ''}`}>
-          <div className="hero__stat-card">
-            <span className="hero__stat-number">3x–10x</span>
-            <span className="hero__stat-label">Growth</span>
-          </div>
-          <div className="hero__stat-card">
-            <span className="hero__stat-number">25+</span>
-            <span className="hero__stat-label">Clients</span>
-          </div>
-          <div className="hero__stat-card">
-            <span className="hero__stat-number">248K</span>
-            <span className="hero__stat-label">Impressions</span>
+            <div className="hero__float-card hero__float-card--2">
+              <div className="hero__float-card-icon"><Users size={20} /></div>
+              <div className="hero__float-card-info">
+                <span className="hero__float-card-number">50+</span>
+                <span className="hero__float-card-label">Happy Clients</span>
+              </div>
+            </div>
+
+            <div className="hero__float-card hero__float-card--3">
+              <div className="hero__float-card-icon"><Zap size={20} /></div>
+              <div className="hero__float-card-info">
+                <span className="hero__float-card-number">99%</span>
+                <span className="hero__float-card-label">Uptime SLA</span>
+              </div>
+            </div>
+
+            {/* Central glow ring */}
+            <div className="hero__ring" />
+            <div className="hero__ring hero__ring--inner" />
+
+            {/* Orbit dots */}
+            <div className="hero__orbit-dot hero__orbit-dot--1" />
+            <div className="hero__orbit-dot hero__orbit-dot--2" />
+            <div className="hero__orbit-dot hero__orbit-dot--3" />
           </div>
         </div>
+      </div>
 
-        {/* Scroll Indicator */}
-        <div className="hero__scroll-indicator">
-          <svg width="20" height="30" viewBox="0 0 20 30" fill="none">
-            <rect x="1" y="1" width="18" height="28" rx="9" stroke="var(--text-dim)" strokeWidth="1.5" />
-            <circle className="hero__scroll-dot" cx="10" cy="10" r="3" fill="var(--accent)" />
-          </svg>
+      {/* Bottom stats bar */}
+      <div className={`hero__stats-bar${showContent ? ' hero__stats-bar--visible' : ''}`}>
+        <div className="container hero__stats-inner">
+          <div className="hero__stat">
+            <span className="hero__stat-number">50+</span>
+            <span className="hero__stat-label">Projects Delivered</span>
+          </div>
+          <div className="hero__stat-divider" />
+          <div className="hero__stat">
+            <span className="hero__stat-number">3x-10x</span>
+            <span className="hero__stat-label">Revenue Growth</span>
+          </div>
+          <div className="hero__stat-divider" />
+          <div className="hero__stat">
+            <span className="hero__stat-number">24/7</span>
+            <span className="hero__stat-label">Dedicated Support</span>
+          </div>
         </div>
       </div>
     </section>

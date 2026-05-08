@@ -133,7 +133,7 @@ function CybersecuritySection() {
 
         <div className="cybersecurity__cta-wrap reveal">
           <a
-            href="https://calendly.com/techkural/30min"
+            href="https://calendly.com/shateen/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-cyber cybersecurity__cta"

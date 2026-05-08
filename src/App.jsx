@@ -5,7 +5,6 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
 import Process from './components/Process';
-import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import CybersecuritySection from './components/CybersecuritySection';
 import FAQ from './components/FAQ';
@@ -61,7 +60,7 @@ function App() {
 
   // Scroll-spy for active nav link
   useEffect(() => {
-    const sectionIds = ['home', 'services', 'portfolio', 'about', 'process', 'testimonials', 'pricing', 'cybersecurity', 'faq'];
+    const sectionIds = ['home', 'services', 'portfolio', 'about', 'process', 'pricing', 'cybersecurity', 'faq'];
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -101,7 +100,6 @@ function App() {
         <Portfolio />
         <About />
         <Process />
-        <Testimonials />
         <Pricing />
         <CybersecuritySection />
         <FAQ />

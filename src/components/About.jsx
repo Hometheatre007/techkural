@@ -1,34 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './About.css';
-
-function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const startTime = performance.now();
-          const step = (now) => {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return <span ref={ref}>{prefix}{count}{suffix}</span>;
-}
+import avatar1 from '../../team/avator1.png';
+import avatar2 from '../../team/avator2.png';
 
 function About() {
   const particlesRef = useRef(null);
@@ -58,39 +31,31 @@ function About() {
     <section className="about section-padding" id="about">
       <div className="about__particles" ref={particlesRef} />
       <div className="container">
-        <div className="about__content">
-          <div className="about__text reveal">
-            <span className="section-label">About Us</span>
-            <h2 className="section-title">We Build More Than Just Pixels</h2>
-            <p>
-              We are two freelancers with over a year of experience crafting digital experiences that drive real business results.
-              Based in Chidambaram, Tamil Nadu, we've helped 25+ clients across industries — from real estate to e-commerce —
-              achieve measurable growth through strategic web development, performance marketing, and cybersecurity services.
-            </p>
-            <p>
-              Our approach is simple: understand your business, identify growth levers, and build systems that convert visitors into customers consistently.
-            </p>
+        <div className="about__content-unique">
+          <div className="about__header-center reveal">
+            <span className="section-label-unique">About us</span>
+            <h2 className="about__title-unique">
+              Design With a 
+              <span className="about__avatar-wrapper-inline">
+                <img src={avatar1} alt="Avatar 1" className="about__avatar-img-inline" />
+              </span> 
+              <span className="text-accent">Pulse.</span>
+              <br />
+              We Shape 
+              <span className="about__avatar-wrapper-inline">
+                <img src={avatar2} alt="Avatar 2" className="about__avatar-img-inline" />
+              </span> 
+              More Than Just Pixels.
+            </h2>
           </div>
 
-          <div className="about__stats stagger-children">
-            <div className="about__stat reveal">
-              <span className="about__stat-number">
-                <AnimatedCounter target={1} prefix="₹" suffix="L+" />
-              </span>
-              <span className="about__stat-label">Revenue Generated</span>
-            </div>
-            <div className="about__stat reveal">
-              <span className="about__stat-number">
-                <AnimatedCounter target={10} suffix="+" />
-              </span>
-              <span className="about__stat-label">Projects Completed</span>
-            </div>
-            <div className="about__stat reveal">
-              <span className="about__stat-number">
-                <AnimatedCounter target={10} suffix="+" />
-              </span>
-              <span className="about__stat-label">Happy Clients</span>
-            </div>
+          <div className="about__description-unique reveal">
+            <p>
+              We're a team of two creative minds dedicated to transforming complex challenges into elegant digital solutions. With over a year of hands-on experience, we bridge the gap between technical excellence and human-centric design.
+            </p>
+            <p>
+              Whether it's building high-performance web applications or securing your digital assets, we don't just deliver projects—we build long-term partnerships rooted in trust and results.
+            </p>
           </div>
         </div>
       </div>

@@ -13,10 +13,10 @@ const NAV_LINKS = [
 ];
 
 const SOCIALS = [
-  { label: 'Instagram', url: 'https://instagram.com/techkural', icon: '📸' },
-  { label: 'LinkedIn', url: 'https://linkedin.com/company/techkural', icon: '💼' },
+  { label: 'Instagram', url: 'https://instagram.com/shateen', icon: '📸' },
+  { label: 'LinkedIn', url: 'https://linkedin.com/company/shateen', icon: '💼' },
   { label: 'WhatsApp', url: 'https://wa.me/919876543210', icon: '💬' },
-  { label: 'Email', url: 'mailto:techkural.co@gmail.com', icon: '✉️' },
+  { label: 'Email', url: 'mailto:shateen.co@gmail.com', icon: '✉️' },
 ];
 
 function Footer() {
@@ -90,9 +90,9 @@ function Footer() {
           {/* Contact */}
           <div className="footer__col reveal">
             <h4 className="footer__col-title">Get In Touch</h4>
-            <p className="footer__contact-email">techkural.co@gmail.com</p>
+            <p className="footer__contact-email">shateen.co@gmail.com</p>
             <a
-              href="https://calendly.com/techkural/30min"
+              href="https://calendly.com/shateen/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary footer__cta"
@@ -104,9 +104,9 @@ function Footer() {
 
         {/* Bottom bar */}
         <div className="footer__bottom">
-          <p>© 2026 TechKural. All rights reserved.</p>
+          <p>© 2026 Shateen. All rights reserved.</p>
           <div className="footer__logo">
-            Tech<span className="footer__logo-bold">Kural</span><span className="footer__logo-dot">.</span>
+            Sha<span className="footer__logo-bold">teen</span><span className="footer__logo-dot">.</span>
           </div>
         </div>
       </div>

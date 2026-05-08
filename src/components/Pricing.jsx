@@ -122,7 +122,7 @@ function Pricing() {
               </ul>
               <div className="pricing__cta">
                 <a
-                  href="https://calendly.com/techkural/30min"
+                  href="https://calendly.com/shateen/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`btn ${plan.highlight ? 'btn-cyber' : 'btn-ghost'}`}

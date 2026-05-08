@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, ArrowUpRight } from 'lucide-react';
 import './Navbar.css';
 import logoImg from '../../team/logo.png';
 
@@ -7,8 +7,6 @@ const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'portfolio', label: 'Our Works' },
   { id: 'services', label: 'Services' },
-  { id: 'cybersecurity', label: 'Cybersecurity' },
-  { id: 'testimonials', label: 'Testimonials' },
 ];
 
 function Navbar({ activeSection }) {
@@ -38,11 +36,8 @@ function Navbar({ activeSection }) {
       <div className="navbar__inner container">
         {/* Logo */}
         <a href="#home" className="navbar__logo" onClick={() => handleLinkClick('home')}>
-          <img src={logoImg} alt="Logo" className="navbar__logo-img" />
-          <div className="navbar__logo-text">
-            Tech<span className="navbar__logo-bold">Kural</span>
-            <span className="navbar__logo-dot">.</span>
-          </div>
+          <img src={logoImg} alt="Shateen Logo" className="navbar__logo-img" />
+          <span className="navbar__logo-text">Shateen</span>
         </a>
 
         {/* Desktop Links */}
@@ -62,18 +57,19 @@ function Navbar({ activeSection }) {
 
         {/* CTA */}
         <a
-          href="https://calendly.com/techkural/30min"
+          href="https://calendly.com/shateen/30min"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary navbar__cta"
         >
-          Book a Meeting
+          Book a Meeting with us!
+          <span className="btn__arrow"><ArrowUpRight size={16} /></span>
         </a>
 
         <div className="navbar__mobile-actions">
           {/* Mobile CTA Icon */}
           <a
-            href="https://calendly.com/techkural/30min"
+            href="https://calendly.com/shateen/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="navbar__mobile-cta"
@@ -112,12 +108,13 @@ function Navbar({ activeSection }) {
           ))}
         </ul>
         <a
-          href="https://calendly.com/techkural/30min"
+          href="https://calendly.com/shateen/30min"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary navbar__drawer-cta"
         >
-          Book a Meeting
+          Book a Meeting with us!
+          <span className="btn__arrow"><ArrowUpRight size={16} /></span>
         </a>
       </div>
     </nav>
