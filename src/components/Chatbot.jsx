@@ -1,89 +1,95 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, AlertCircle } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import './Chatbot.css';
 
-// Shateen Brand Knowledge Base
+// Shateen Brand Knowledge Base (used as local fallback and system prompt)
 const SHATEEN_KNOWLEDGE = {
-  greeting: "Hey there! 👋 Welcome to Shateen. I'm here to help you learn about what we do, how we work, and how we can help your business grow. What's on your mind?",
+  greeting: "Hey there! 👋 Welcome to Shateen. I'm here to help you learn about what we do and how we can help your business grow. What's on your mind?",
   
   responses: [
     {
-      keywords: ['what do you do', 'what does shateen do', 'services', 'what you do', 'offerings', 'what can you do'],
-      response: "Shateen is a creative partnership that focuses on shaping digital experiences rather than just pushing pixels. Whether it's solving a complex business puzzle or building a brand story from the ground up, the goal is to create something that resonates and actually works for the people using it. We specialize in web development, performance marketing, SEO, and cybersecurity. 🚀"
+      keywords: ['hi', 'hello', 'hey', 'hai', 'sup', 'yo'],
+      response: "Hey! 😊 Great to have you here. How can I help you today? I can tell you about our web development, marketing, or cybersecurity services!"
     },
     {
-      keywords: ['who are you', 'team', 'about', 'founders', 'who is shateen', 'members'],
-      response: "We're a Strategist and a Storyteller — a duo that believes every great product starts with understanding people, not just pixels. With over a year of hands-on experience across diverse industries, we approach every project with deep empathy and a commitment to craft. Think of us as your creative partners, not just another agency. 🤝"
+      keywords: ['what do you do', 'services', 'offerings', 'work', 'do'],
+      response: "Shateen is a creative partner for digital growth. We specialize in **Web Development**, **Performance Marketing**, **SEO**, and **Cybersecurity Audits**. 🚀"
     },
     {
-      keywords: ['web', 'website', 'development', 'build', 'app', 'application'],
-      response: "We craft high-performance websites that don't just look beautiful — they convert visitors into customers. Every site we build is designed with your audience in mind, focusing on speed, accessibility, and a seamless user experience. From landing pages to full-scale web applications, we've got you covered. 💻"
+      keywords: ['who are you', 'team', 'about', 'shateen'],
+      response: "We're a duo of a Strategist and a Storyteller who believe in understanding people, not just pixels. We treat every project like our own! 🤝"
     },
     {
-      keywords: ['marketing', 'ads', 'meta', 'google', 'leads', 'advertising', 'campaign'],
-      response: "Our performance marketing approach is rooted in strategy and empathy. We run Meta and Google ad campaigns that generate consistent, quality leads — not just impressions. We focus on understanding your ideal customer and crafting messages that actually resonate with them. 📈"
+      keywords: ['contact', 'call', 'book', 'meeting', 'reach', 'connect'],
+      response: "We'd love to chat! You can reach us directly at **+91 8608442802** or book a free 30-minute strategy call by clicking the **'Book a Meeting'** button in the corner! 📞"
     },
     {
-      keywords: ['seo', 'search', 'ranking', 'organic', 'traffic'],
-      response: "SEO isn't just about keywords — it's about making sure the right people find you at the right time. We optimize your digital presence with a blend of technical expertise and content strategy to drive organic growth that compounds over time. 🔍"
+      keywords: ['price', 'cost', 'pricing', 'budget'],
+      response: "Every project is unique, so we tailor our pricing to your goals. Book a call with us for a custom quote! 💰"
     },
     {
-      keywords: ['security', 'cyber', 'penetration', 'testing', 'hack', 'protect'],
-      response: "In today's digital landscape, security isn't optional — it's essential. We provide penetration testing and cybersecurity services to identify vulnerabilities before they become problems. Think of it as a health check for your digital assets. 🔒"
+      keywords: ['seo', 'search', 'ranking'],
+      response: "We help you rank on the first page of Google through technical SEO and content strategy. 🔍"
     },
     {
-      keywords: ['price', 'cost', 'budget', 'how much', 'pricing', 'charge', 'rate', 'package'],
-      response: "Every project is unique, so we tailor our pricing to fit your specific needs and goals. We believe in transparent, value-based pricing — no hidden fees, no surprises. The best way to get a clear picture is to book a quick call with us, and we'll walk you through everything. Want to schedule one? 💰"
+      keywords: ['security', 'cyber', 'hack', 'protect'],
+      response: "We offer penetration testing and security audits to keep your digital assets safe from vulnerabilities. 🛡️"
     },
     {
-      keywords: ['contact', 'reach', 'call', 'book', 'meeting', 'connect', 'hire', 'start'],
-      response: "We'd love to chat! The easiest way to connect is to book a free 30-minute strategy call with us. We'll listen to your challenges, share some initial ideas, and see if we're a good fit for each other. You can book directly through our website — look for the 'Book a Meeting' button! 📞"
-    },
-    {
-      keywords: ['why', 'different', 'unique', 'special', 'choose', 'better'],
-      response: "What makes us different? We genuinely care. We're not a faceless agency — we're two people who obsess over the details and treat every project like it's our own. We prioritize the 'why' behind every decision and the 'feel' behind every interaction. When you work with Shateen, you get creative partners who are invested in your success. ✨"
-    },
-    {
-      keywords: ['process', 'how do you work', 'workflow', 'approach', 'methodology'],
-      response: "Our process is simple but intentional:\n\n1️⃣ **Listen** — We start by deeply understanding your business and goals\n2️⃣ **Strategize** — We map out the smartest path to get you there\n3️⃣ **Create** — We build functional, beautiful solutions with care\n4️⃣ **Refine** — We iterate based on real feedback until it's right\n\nThroughout it all, you're never in the dark — we believe in open, honest collaboration."
-    },
-    {
-      keywords: ['portfolio', 'work', 'projects', 'examples', 'case study', 'clients'],
-      response: "We've worked with businesses across diverse industries — from e-commerce to real estate — helping them grow through strategic digital solutions. You can check out some of our recent work in the 'Our Works' section on this page. Each project tells a story of collaboration and real results. 🎨"
-    },
-    {
-      keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'sup', 'yo'],
-      response: "Hey! Great to have you here 😊 How can I help you today? Whether you're curious about our services, want to discuss a project idea, or just want to know more about Shateen — I'm all ears!"
-    },
-    {
-      keywords: ['thanks', 'thank you', 'bye', 'goodbye', 'see you', 'later'],
-      response: "Thank you for stopping by! If you ever need anything, we're just a message away. Wishing you an amazing day ahead! 🧡"
+      keywords: ['ceo', 'founder', 'pugazhenthi', 'owner', 'boss', 'head'],
+      response: "Our CEO & Founder is **Pugazhenthi J**. He's a visionary leader dedicated to blending modern technology with creative storytelling! 🚀"
     }
   ],
-
-  fallback: "That's a great question! While I might not have the perfect answer right now, our team would love to discuss this with you personally. Feel free to book a free strategy call — we're always happy to chat and explore how we can help. 😊"
+  fallback: "That's an interesting point! While I focus on Shateen's services, our team would love to discuss this with you in detail. Would you like to book a quick call? 😊"
 };
 
-function findBestResponse(input) {
-  const lowerInput = input.toLowerCase().trim();
-  
-  let bestMatch = null;
-  let bestScore = 0;
+const SHATEEN_CONTEXT = `
+You are the AI assistant for Shateen. Tone: Professional, friendly, creative. 
+CEO & Founder: Pugazhenthi J.
+Contact Number: +91 8608442802.
+Services: Web Dev, Performance Marketing, SEO, Cybersecurity. 
+Goal: Be helpful and encourage booking a meeting.
+`;
 
-  for (const item of SHATEEN_KNOWLEDGE.responses) {
-    let score = 0;
-    for (const keyword of item.keywords) {
-      if (lowerInput.includes(keyword)) {
-        score += keyword.split(' ').length; // Longer keyword matches score higher
-      }
-    }
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = item;
-    }
+function findLocalResponse(input) {
+  const lowerInput = input.toLowerCase().trim();
+  const match = SHATEEN_KNOWLEDGE.responses.find(item => 
+    item.keywords.some(keyword => lowerInput.includes(keyword))
+  );
+  return match ? match.response : SHATEEN_KNOWLEDGE.fallback;
+}
+
+async function getGeminiResponse(userMessage, history) {
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  
+  if (!API_KEY || API_KEY.length < 10) {
+    return findLocalResponse(userMessage);
   }
 
-  return bestMatch ? bestMatch.response : SHATEEN_KNOWLEDGE.fallback;
+  try {
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    // Using gemini-flash-latest for better reliability and quota management
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-flash-latest",
+      systemInstruction: SHATEEN_CONTEXT
+    });
+
+    const chat = model.startChat({
+      history: history.slice(-6).map(msg => ({
+        role: msg.type === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }],
+      })),
+    });
+
+    const result = await chat.sendMessage(userMessage);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error("Gemini Error:", error);
+    // If Gemini fails, we use the improved local knowledge base
+    return findLocalResponse(userMessage);
+  }
 }
 
 function Chatbot() {
@@ -110,23 +116,24 @@ function Chatbot() {
     }
   }, [isOpen]);
 
-  const handleSend = () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
+  const handleSend = async (customText = null) => {
+    const textToSend = customText || input.trim();
+    if (!textToSend || isTyping) return;
 
-    const userMsg = { id: Date.now(), type: 'user', text: trimmed, time: new Date() };
+    const userMsg = { id: Date.now(), type: 'user', text: textToSend, time: new Date() };
     setMessages(prev => [...prev, userMsg]);
-    setInput('');
+    
+    if (!customText) setInput('');
     setIsTyping(true);
 
-    // Simulate typing delay for natural feel
-    const delay = 800 + Math.random() * 1200;
-    setTimeout(() => {
-      const botResponse = findBestResponse(trimmed);
-      const botMsg = { id: Date.now() + 1, type: 'bot', text: botResponse, time: new Date() };
-      setIsTyping(false);
-      setMessages(prev => [...prev, botMsg]);
-    }, delay);
+    // Prepare history
+    const history = messages.slice(1);
+
+    const botResponse = await getGeminiResponse(textToSend, history);
+    
+    const botMsg = { id: Date.now() + 1, type: 'bot', text: botResponse, time: new Date() };
+    setIsTyping(false);
+    setMessages(prev => [...prev, botMsg]);
   };
 
   const handleKeyDown = (e) => {
@@ -141,27 +148,12 @@ function Chatbot() {
   };
 
   const quickActions = [
-    "What do you do?",
-    "Who's the team?",
-    "Show me pricing",
-    "Book a meeting"
+    "What services do you offer?",
+    "How do I book a meeting?",
+    "Who is the CEO?",
+    "What is your contact number?",
+    "Show me your process"
   ];
-
-  const handleQuickAction = (text) => {
-    setInput(text);
-    const userMsg = { id: Date.now(), type: 'user', text, time: new Date() };
-    setMessages(prev => [...prev, userMsg]);
-    setIsTyping(true);
-
-    const delay = 800 + Math.random() * 1200;
-    setTimeout(() => {
-      const botResponse = findBestResponse(text);
-      const botMsg = { id: Date.now() + 1, type: 'bot', text: botResponse, time: new Date() };
-      setIsTyping(false);
-      setMessages(prev => [...prev, botMsg]);
-    }, delay);
-    setInput('');
-  };
 
   return (
     <>
@@ -201,7 +193,7 @@ function Chatbot() {
               <h4 className="chatbot__header-title">Shateen AI</h4>
               <span className="chatbot__header-status">
                 <span className="chatbot__status-dot" />
-                Online
+                {import.meta.env.VITE_GEMINI_API_KEY ? 'Powered by Gemini' : 'Online'}
               </span>
             </div>
           </div>
@@ -224,7 +216,12 @@ function Chatbot() {
                 </div>
               )}
               <div className="chatbot__message-bubble">
-                <p dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, '<br/>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                <p dangerouslySetInnerHTML={{ 
+                  __html: msg.text
+                    .replace(/\n/g, '<br/>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                }} />
                 <span className="chatbot__message-time">{formatTime(msg.time)}</span>
               </div>
             </div>
@@ -246,14 +243,14 @@ function Chatbot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Quick Actions (only show if few messages) */}
+        {/* Quick Actions */}
         {messages.length <= 2 && (
           <div className="chatbot__quick-actions">
             {quickActions.map((action, i) => (
               <button
                 key={i}
                 className="chatbot__quick-btn"
-                onClick={() => handleQuickAction(action)}
+                onClick={() => handleSend(action)}
               >
                 {action}
               </button>
@@ -267,7 +264,7 @@ function Chatbot() {
             ref={inputRef}
             type="text"
             className="chatbot__input"
-            placeholder="Ask me anything about Shateen..."
+            placeholder="Ask me anything..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -275,8 +272,8 @@ function Chatbot() {
           />
           <button
             className="chatbot__send"
-            onClick={handleSend}
-            disabled={!input.trim()}
+            onClick={() => handleSend()}
+            disabled={!input.trim() || isTyping}
             aria-label="Send message"
           >
             <Send size={18} />
@@ -288,3 +285,5 @@ function Chatbot() {
 }
 
 export default Chatbot;
+
+

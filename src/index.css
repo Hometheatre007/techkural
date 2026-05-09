@@ -36,8 +36,8 @@
   --border-dark: rgba(255, 255, 255, 0.08);
   --border-dark-hover: rgba(245, 124, 0, 0.3);
 
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius: 14px;
@@ -71,6 +71,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -80,8 +81,9 @@ body {
 /* --- Typography --- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 800;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   color: var(--text);
 }
 
@@ -200,6 +202,8 @@ a {
 }
 
 /* --- Scroll Progress Bar --- */
+
+
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -311,14 +315,14 @@ a {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 124, 0, 0.2); }
-  50% { box-shadow: 0 0 0 12px transparent; }
-}
-
 @keyframes float-bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 124, 0, 0.2); }
+  50% { box-shadow: 0 0 0 12px transparent; }
 }
 
 @keyframes blink {

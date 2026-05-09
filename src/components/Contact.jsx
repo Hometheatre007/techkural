@@ -12,24 +12,30 @@ const Contact = () => {
     setResult("Sending....");
     const formData = new FormData(event.target);
 
-    // Enter your Web3Forms Access Key here
+    // Web3Forms Access Key
     formData.append("access_key", "b90f0969-3271-4ffa-b7ea-ce505fd41a51");
 
-    const response = await fetch("https://calendly.com/shateen/30min", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.success) {
-      setResult("Message Sent Successfully!");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      if (data.success) {
+        setResult("Message Sent Successfully! 🧡");
+        event.target.reset();
+      } else {
+        console.log("Error", data);
+        setResult(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setResult("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
