@@ -21,8 +21,15 @@
   border-radius: var(--radius);
   overflow: hidden;
   position: relative;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: all 0.3s ease;
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.faq__item:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .faq__item--open {
@@ -40,13 +47,13 @@
   padding: 1.25rem 1.5rem;
   background: none;
   border: none;
-  color: var(--text);
+  color: #1a1a1a;
   font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-align: left;
   cursor: pointer;
-  transition: color var(--transition);
+  transition: none;
 }
 
 .faq__question:hover {
@@ -59,7 +66,7 @@
 
 .faq__chevron {
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: none;
   color: var(--text-dim);
 }
 
@@ -70,14 +77,11 @@
 
 /* Answer */
 .faq__answer-wrap {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
 }
 
 .faq__item--open .faq__answer-wrap {
-  max-height: 500px;
-  transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
 }
 
 .faq__answer {
@@ -88,7 +92,6 @@
   font-size: 0.95rem;
   line-height: 1.7;
   color: #333333;
-  opacity: 1;
 }
 
 /* Active border animation */
@@ -101,7 +104,7 @@
   background: linear-gradient(180deg, var(--gradient-1), var(--gradient-2));
   transform: scaleY(0);
   transform-origin: top;
-  transition: transform 0.3s ease;
+  transition: none;
   border-radius: 0 2px 2px 0;
 }
 
